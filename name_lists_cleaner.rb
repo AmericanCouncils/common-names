@@ -10,6 +10,7 @@ def fetch_names(d)
 		next unless filename =~ /\.csv$/
 		names = CSV.read(File.join(dir_path, filename)).map(&:first)
 		names.each_with_index do |name, idx|
+			name = name.upcase.gsub(/[^A-Z]/, '')
 			name_priorities[name] = [idx, name_priorities.fetch(name, 99999)].min
 		end
 	end
